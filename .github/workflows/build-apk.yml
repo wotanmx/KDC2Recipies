@@ -24,8 +24,8 @@ jobs:
       - name: Instalar dependencias
         run: npm install
 
-      - name: Sincronizar Capacitor
-        run: npx cap sync android
+     - name: Sincronizar Capacitor
+        run: ./node_modules/.bin/cap sync android
 
       - name: Permissao Gradle
         run: chmod +x android/gradlew
