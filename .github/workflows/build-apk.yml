@@ -19,7 +19,9 @@ jobs:
       - name: Instalar
         run: npm install
       - name: Capacitor
-        run: ./node_modules/.bin/cap sync android
+        run: |
+          chmod +x ./node_modules/.bin/cap
+          ./node_modules/.bin/cap sync android
       - name: Gradle
         run: chmod +x android/gradlew
       - name: Build
