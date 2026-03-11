@@ -1,39 +1,30 @@
 name: Build APK
-
 on:
   push:
     branches: [main]
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Configurar Node.js
+      - name: Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
-
-      - name: Configurar Java
+      - name: Java
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-
-      - name: Instalar dependencias
+      - name: Instalar
         run: npm install
-
-     - name: Sincronizar Capacitor
+      - name: Capacitor
         run: ./node_modules/.bin/cap sync android
-
-      - name: Permissao Gradle
+      - name: Gradle
         run: chmod +x android/gradlew
-
-      - name: Gerar APK
+      - name: Build
         run: cd android && ./gradlew assembleDebug
-
-      - name: Salvar APK
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: KDC2Recipies
